@@ -84,7 +84,11 @@ html, body {
       border-radius: 3px; }
     .commit-list .commit .message {
       font-weight: bold;
-      padding-left: 10px; }
+      padding-left: 10px;
+      width: 67%;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden; }
     .commit-list .commit .time {
       position: absolute;
       right: 20px;

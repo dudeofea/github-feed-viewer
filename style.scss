@@ -89,6 +89,10 @@ html, body {
 		.message {
 			font-weight: bold;
 			padding-left: 10px;
+			width: 67%;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
 		}
 		.time {
 			position: absolute;
