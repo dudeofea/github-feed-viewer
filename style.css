@@ -9,8 +9,8 @@ html, body {
   .commit-list .commit-wrapper {
     height: 12.5%;
     width: 100%;
-    box-sizing: border-box;
-    padding: 10px 0; }
+    padding: 0;
+    position: relative; }
   .commit-list .commit-wrapper:nth-child(1) {
     background-color: #fa4b37; }
   .commit-list .commit-wrapper:nth-child(2) {
@@ -28,70 +28,76 @@ html, body {
   .commit-list .commit-wrapper:nth-child(8) {
     background-color: #dd2476; }
   .commit-list .commit {
-    position: relative;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    box-sizing: content-box;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     border-radius: 10px;
-    width: 95%;
-    height: 100%;
-    margin: 0 auto;
+    width: 85%;
+    height: 60%;
     background-color: #FFF;
     box-shadow: 0px 1px rgba(0, 0, 0, 0.42);
     font-size: 16px;
-    padding: 0 0 0 60px;
-    box-sizing: border-box; }
+    padding: 0.5% 6% 0.5% 1%; }
     .commit-list .commit img {
-      position: absolute;
-      left: 7px;
-      top: 50%;
-      -webkit-transform: translateY(-50%);
-      -moz-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-      -o-transform: translateY(-50%);
-      transform: translateY(-50%);
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
       -ms-border-radius: 5px;
       border-radius: 5px;
       border: 1px solid rgba(0, 0, 0, 0.08);
-      height: 80%; }
-    .commit-list .commit p {
+      height: 95%; }
+    .commit-list .commit > div {
       display: inline-block;
-      margin: 10px 0 0 0;
+      margin: 0;
+      font-family: 'Noto Sans', sans-serif;
+      overflow: hidden;
+      height: 100%;
+      line-height: 100%;
       vertical-align: middle;
-      font-family: 'Noto Sans', sans-serif; }
+      margin-top: -10px; }
     .commit-list .commit .username {
-      left: 55px;
-      padding-right: 10px; }
+      margin-left: 10px;
+      margin-right: 10px; }
+    .commit-list .commit .insert-count, .commit-list .commit .delete-count {
+      padding: 0 8px;
+      color: white;
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px;
+      float: left; }
     .commit-list .commit .insert-count {
-      left: 60px;
-      padding: 0 8px;
-      color: white;
-      background-color: rgba(31, 173, 31, 0.75);
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      border-radius: 3px; }
+      background-color: rgba(31, 173, 31, 0.75); }
     .commit-list .commit .delete-count {
-      left: 70px;
-      padding: 0 8px;
-      color: white;
       background-color: rgba(255, 38, 0, 0.75);
-      -webkit-border-radius: 3px;
-      -moz-border-radius: 3px;
-      -ms-border-radius: 3px;
-      border-radius: 3px; }
+      margin-left: 5px; }
     .commit-list .commit .message {
       font-weight: bold;
       padding-left: 10px;
-      width: 67%;
+      width: 60%;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden; }
     .commit-list .commit .time {
       position: absolute;
       right: 20px;
-      color: rgba(0, 0, 0, 0.5); }
+      top: 45%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      color: rgba(0, 0, 0, 0.5);
+      height: auto;
+      line-height: auto;
+      margin: 0; }
 
 /*# sourceMappingURL=style.css.map */

@@ -34,8 +34,8 @@ html, body {
 	.commit-wrapper {
 		height: 100% / $commit_count;
 		width: 100%;
-		box-sizing: border-box;
-		padding: 10px 0;
+		padding: 0;
+		position: relative;
 	}
 	@for $i from 1 through $commit_count {
 		.commit-wrapper:nth-child(#{$i}) {
@@ -43,61 +43,67 @@ html, body {
 		}
 	}
 	.commit {
-		position: relative;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		@include transform(translate(-50%,-50%));
+		box-sizing: content-box;
 		@include border-radius(10px);
-		width: 95%;
-		height: 100%;
-		margin: 0 auto;
+		width: 85%;
+		height: 60%;
 		background-color: #FFF;
 		box-shadow: 0px 1px rgba(0, 0, 0, 0.42);
 		font-size: 16px;
-		padding: 0 0 0 60px;
-		box-sizing: border-box;
+		padding: 0.5% 6% 0.5% 1%;
 		img {
-			position: absolute;
-			left: 7px;
-			top: 50%;
-			@include transform(translateY(-50%));
 			@include border-radius(5px);
 			border: 1px solid rgba(0, 0, 0, 0.08);
-			height: 80%;
+			height: 95%;
 		}
-		p {
+		& > div {
 			display: inline-block;
-			margin: 10px 0 0 0;
-			vertical-align: middle;
+			margin: 0;
 			font-family: 'Noto Sans', sans-serif;
+			overflow: hidden;
+			height: 100%;
+			line-height: 100%;
+			vertical-align: middle;
+			margin-top: -10px;
 		}
 		.username {
-			left: 55px;
-			padding-right: 10px;
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+		.insert-count, .delete-count{
+			padding: 0 8px;
+			color: white;
+			@include border-radius(3px);
+			float: left;
 		}
 		.insert-count {
-			left: 60px;
-			padding: 0 8px;
-			color: white;
 			background-color: $green;
-			@include border-radius(3px);
 		}
 		.delete-count {
-			left: 70px;
-			padding: 0 8px;
-			color: white;
 			background-color: $red;
-			@include border-radius(3px);
+			margin-left: 5px;
 		}
 		.message {
 			font-weight: bold;
 			padding-left: 10px;
-			width: 67%;
+			width: 60%;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
 		}
 		.time {
 			position: absolute;
-			right: 20px;
+			right: 2%;
+			top: 45%;
+			@include transform(translateY(-50%));
 			color: rgba(0,0,0,0.5);
+			height: auto;
+			line-height: auto;
+			margin: 0;
 		}
 	}
 }

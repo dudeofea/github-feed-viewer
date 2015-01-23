@@ -1,3 +1,4 @@
 $(window).load(function(){
-	//alert("hey");
+	var url = "https://api.github.com/repos/dudeofea/Anonument/commits";
+	
 });
