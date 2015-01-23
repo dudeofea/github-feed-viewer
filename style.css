@@ -1,0 +1,93 @@
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%; }
+
+.commit-list {
+  height: 100%;
+  width: 50%; }
+  .commit-list .commit-wrapper {
+    height: 12.5%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 10px 0; }
+  .commit-list .commit-wrapper:nth-child(1) {
+    background-color: #fa4b37; }
+  .commit-list .commit-wrapper:nth-child(2) {
+    background-color: #f64540; }
+  .commit-list .commit-wrapper:nth-child(3) {
+    background-color: #f24049; }
+  .commit-list .commit-wrapper:nth-child(4) {
+    background-color: #ee3a52; }
+  .commit-list .commit-wrapper:nth-child(5) {
+    background-color: #e9345b; }
+  .commit-list .commit-wrapper:nth-child(6) {
+    background-color: #e52f64; }
+  .commit-list .commit-wrapper:nth-child(7) {
+    background-color: #e1296d; }
+  .commit-list .commit-wrapper:nth-child(8) {
+    background-color: #dd2476; }
+  .commit-list .commit {
+    position: relative;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    border-radius: 10px;
+    width: 95%;
+    height: 100%;
+    margin: 0 auto;
+    background-color: #FFF;
+    box-shadow: 0px 1px rgba(0, 0, 0, 0.42);
+    font-size: 16px;
+    padding: 0 0 0 60px;
+    box-sizing: border-box; }
+    .commit-list .commit img {
+      position: absolute;
+      left: 7px;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      -moz-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+      -o-transform: translateY(-50%);
+      transform: translateY(-50%);
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      border-radius: 5px;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      height: 80%; }
+    .commit-list .commit p {
+      display: inline-block;
+      margin: 10px 0 0 0;
+      vertical-align: middle;
+      font-family: 'Noto Sans', sans-serif; }
+    .commit-list .commit .username {
+      left: 55px;
+      padding-right: 10px; }
+    .commit-list .commit .insert-count {
+      left: 60px;
+      padding: 0 8px;
+      color: white;
+      background-color: rgba(31, 173, 31, 0.75);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px; }
+    .commit-list .commit .delete-count {
+      left: 70px;
+      padding: 0 8px;
+      color: white;
+      background-color: rgba(255, 38, 0, 0.75);
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      -ms-border-radius: 3px;
+      border-radius: 3px; }
+    .commit-list .commit .message {
+      font-weight: bold;
+      padding-left: 10px; }
+    .commit-list .commit .time {
+      position: absolute;
+      right: 20px;
+      color: rgba(0, 0, 0, 0.5); }
+
+/*# sourceMappingURL=style.css.map */
