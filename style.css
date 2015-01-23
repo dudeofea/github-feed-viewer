@@ -10,7 +10,8 @@ html, body {
     height: 12.5%;
     width: 100%;
     padding: 0;
-    position: relative; }
+    position: relative;
+    box-shadow: inset 0px 1px rgba(0, 0, 0, 0.1); }
   .commit-list .commit-wrapper:nth-child(1) {
     background-color: #fa4b37; }
   .commit-list .commit-wrapper:nth-child(2) {
@@ -88,7 +89,7 @@ html, body {
       overflow: hidden; }
     .commit-list .commit .time {
       position: absolute;
-      right: 20px;
+      right: 2%;
       top: 45%;
       -webkit-transform: translateY(-50%);
       -moz-transform: translateY(-50%);

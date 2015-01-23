@@ -36,6 +36,7 @@ html, body {
 		width: 100%;
 		padding: 0;
 		position: relative;
+		box-shadow: inset 0px 1px rgba(0, 0, 0, 0.1);
 	}
 	@for $i from 1 through $commit_count {
 		.commit-wrapper:nth-child(#{$i}) {
