@@ -13,21 +13,21 @@ html, body {
     position: relative;
     box-shadow: inset 0px 1px rgba(0, 0, 0, 0.1); }
   .commit-list .commit-wrapper:nth-child(1) {
-    background-color: #fa4b37; }
+    background-color: #fe5e4a; }
   .commit-list .commit-wrapper:nth-child(2) {
-    background-color: #f64540; }
+    background-color: #fd6f44; }
   .commit-list .commit-wrapper:nth-child(3) {
-    background-color: #f24049; }
+    background-color: #fc803f; }
   .commit-list .commit-wrapper:nth-child(4) {
-    background-color: #ee3a52; }
+    background-color: #fc9139; }
   .commit-list .commit-wrapper:nth-child(5) {
-    background-color: #e9345b; }
+    background-color: #fba133; }
   .commit-list .commit-wrapper:nth-child(6) {
-    background-color: #e52f64; }
+    background-color: #fab22e; }
   .commit-list .commit-wrapper:nth-child(7) {
-    background-color: #e1296d; }
+    background-color: #f9c328; }
   .commit-list .commit-wrapper:nth-child(8) {
-    background-color: #dd2476; }
+    background-color: #f9d423; }
   .commit-list .commit {
     position: absolute;
     top: 50%;
@@ -42,12 +42,12 @@ html, body {
     -moz-border-radius: 10px;
     -ms-border-radius: 10px;
     border-radius: 10px;
-    width: 85%;
+    width: 90%;
     height: 60%;
     background-color: #FFF;
     box-shadow: 0px 1px rgba(0, 0, 0, 0.42);
     font-size: 16px;
-    padding: 0.5% 6% 0.5% 1%; }
+    padding: 0.5% 1%; }
     .commit-list .commit img {
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -67,14 +67,20 @@ html, body {
     .commit-list .commit .username {
       margin-left: 10px;
       margin-right: 10px; }
+    .commit-list .commit .stats {
+      width: 12%; }
     .commit-list .commit .insert-count, .commit-list .commit .delete-count {
-      padding: 0 8px;
+      padding: 0;
       color: white;
       -webkit-border-radius: 3px;
       -moz-border-radius: 3px;
       -ms-border-radius: 3px;
       border-radius: 3px;
-      float: left; }
+      float: left;
+      width: 47%;
+      text-align: center;
+      font-family: monospace;
+      font-size: 80%; }
     .commit-list .commit .insert-count {
       background-color: rgba(31, 173, 31, 0.75); }
     .commit-list .commit .delete-count {

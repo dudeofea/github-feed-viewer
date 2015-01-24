@@ -1,6 +1,6 @@
 // --- Main Colours --- //
-$color1: #DD2476;
-$color2: #FF512F;
+$color1: #F9D423;
+$color2: #FF4E50;
 $green: rgba(31, 173, 31, 0.75);
 $red: rgba(255, 38, 0, 0.75);
 
@@ -50,12 +50,12 @@ html, body {
 		@include transform(translate(-50%,-50%));
 		box-sizing: content-box;
 		@include border-radius(10px);
-		width: 85%;
+		width: 90%;
 		height: 60%;
 		background-color: #FFF;
 		box-shadow: 0px 1px rgba(0, 0, 0, 0.42);
 		font-size: 16px;
-		padding: 0.5% 6% 0.5% 1%;
+		padding: 0.5% 1%;
 		img {
 			@include border-radius(5px);
 			border: 1px solid rgba(0, 0, 0, 0.08);
@@ -75,11 +75,18 @@ html, body {
 			margin-left: 10px;
 			margin-right: 10px;
 		}
+		.stats{
+			width: 12%;
+		}
 		.insert-count, .delete-count{
-			padding: 0 8px;
+			padding: 0;
 			color: white;
 			@include border-radius(3px);
 			float: left;
+			width: 47%;
+			text-align: center;
+			font-family: monospace;
+			font-size: 80%;
 		}
 		.insert-count {
 			background-color: $green;
