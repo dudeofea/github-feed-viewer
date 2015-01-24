@@ -1,8 +1,8 @@
 // --- Main Colours --- //
 $color1: #F9D423;
 $color2: #FF4E50;
-$green: rgba(31, 173, 31, 0.75);
-$red: rgba(255, 38, 0, 0.75);
+$green: #1FAD65;
+$red: #FF4E50;
 
 // --- Global vars --- //
 $commit_count: 8;
@@ -28,9 +28,13 @@ html, body {
 	height: 100%;
 }
 
-.commit-list {
+.commit-list, .diff-view{
 	height: 100%;
 	width: 50%;
+	float: left;
+}
+
+.commit-list {
 	.commit-wrapper {
 		height: 100% / $commit_count;
 		width: 100%;
@@ -43,6 +47,21 @@ html, body {
 			background-color: mix($color1, $color2, 100% * $i / $commit_count);
 		}
 	}
+	.commit-wrapper.selected .commit {
+		background-color: rgba(255, 255, 255, 0.95);
+	}
+	.commit-wrapper.selected:after {
+		content:"";
+		width:0;
+		height:0;
+		right: 0;
+		top: 50%;
+		@include transform(translateY(-50%));
+		border-top:20px solid transparent;
+		border-bottom:20px solid transparent;
+		border-right:20px solid #FFF;
+		position: absolute;
+	}
 	.commit {
 		position: absolute;
 		top: 50%;
@@ -52,7 +71,7 @@ html, body {
 		@include border-radius(10px);
 		width: 90%;
 		height: 60%;
-		background-color: #FFF;
+		background-color: rgba(255, 255, 255, 0.75);
 		box-shadow: 0px 1px rgba(0, 0, 0, 0.42);
 		font-size: 16px;
 		padding: 0.5% 1%;
@@ -113,5 +132,14 @@ html, body {
 			line-height: auto;
 			margin: 0;
 		}
+	}
+}
+
+.diff-view {
+	pre {
+		margin: 1em;
+	}
+	code {
+		overflow: hidden;
 	}
 }

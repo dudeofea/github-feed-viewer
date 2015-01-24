@@ -13,9 +13,10 @@ $(window).load(function(){
 			$.get(commits[i]['url'], d.addDep());
 		};
 		d.calc(function(data){
-			//add stats
+			//add stats & diffs
 			for (var i = 0; i < commits.length; i++) {
 				commits[i]['stats'] = data[i*3]['stats'];
+				commits[i]['files'] = data[i*3]['files'];
 			};
 			$('#commits > div').each(function(i){
 				if(typeof commits[i] != "undefined"){
@@ -24,10 +25,24 @@ $(window).load(function(){
 				}
 			});
 			cur_commits = commits;
+			show_diff(0);
 		});
 	});
 });
 
+//show a diff patch in the detail window
+function show_diff(i){
+	var sel = $('#diff-view pre code');
+	sel.html(cur_commits[i]['files'][0]['patch']);
+	sel.each(function(i, block){
+		hljs.highlightBlock(block);
+	});
+	//add selected class
+	$("#commits > div").removeClass('selected');
+	$("#commits > div:nth-child("+(i+1)+")").addClass('selected');
+}
+
+//update commit times
 function update_times(){
 	var now = new Date();
 	$('#commits > div').each(function(i){
@@ -40,6 +55,7 @@ function update_times(){
 }
 setInterval(update_times, 1000);
 
+//create commit in commit-wrapper element
 function print_commit(sel, commit){
 	var html = "";
 	var insert_o = Math.min(0.4 + Math.sqrt(commit['stats']['additions'])/20, 1.0);
@@ -57,6 +73,7 @@ function print_commit(sel, commit){
 	sel.html(html);
 }
 
+//format a time difference
 function print_time(now, date){
 	var sec = parseInt((now.getTime() - date.getTime()) / 1000);
 	if(sec < 60)		//show seconds
