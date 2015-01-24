@@ -2,7 +2,11 @@ var commit_count = 8;
 var cur_commits = [];
 
 $(window).load(function(){
-	var url = "https://api.github.com/repos/dudeofea/Anonument/commits";
+	var urls = ["https://github.com/dudeofea/github-feed-viewer"];
+	for (var i = 0; i < urls.length; i++) {
+		urls[i] = urls[i].substring(urls[i].indexOf("github.com/")+11);
+	};
+	var url = "https://api.github.com/repos/"+urls[0]+"/commits";
 	$.get(url, function(commits){
 		var d = new Dep({ bundleArgs: true });
 		for (var i = 0; i < commits.length; i++) {
@@ -59,9 +63,9 @@ function print_time(now, date){
 		return diff + "s";
 	if(diff < 10 * 60)	//show minutes for less than 10m
 		return parseInt(diff/60)+"m "+parseInt(diff%60)+"s";
-	if(diff < 10 * 60 * 60)	//show minutes
+	if(diff < 60 * 60)	//show minutes
 		return parseInt(diff/60)+"m";
-	if(diff < 10 * 60 * 60 * 24) //show hours
+	if(diff < 60 * 60 * 24) //show hours
 		return parseInt(diff/3600)+"hrs";
 	//show days
 	return parseInt(diff/86400)+"d";
