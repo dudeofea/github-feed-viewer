@@ -66,7 +66,7 @@ function print_time(now, date){
 		return parseInt(min)+"m "+parseInt(sec%60)+"s";
 	var hr = parseInt(min/60);
 	if(hr < 24) //show hours
-		return parseInt(hr)+"hrs "+parseInt(min%60)+"m";
+		return parseInt(hr)+"h "+parseInt(min%60)+"m";
 	//show days
 	return parseInt(hr/24)+"d "+parseInt(hr%24)+"h";
 }
