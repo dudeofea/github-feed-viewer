@@ -38,8 +38,8 @@ function update_times(){
 
 function print_commit(sel, commit){
 	var html = "";
-	var insert_o = Math.min(0.5 + Math.sqrt(commit['stats']['additions'])/17, 1.0);
-	var delete_o = Math.min(0.5 + Math.sqrt(commit['stats']['deletions'])/17, 1.0);
+	var insert_o = Math.min(0.4 + Math.sqrt(commit['stats']['additions'])/20, 1.0);
+	var delete_o = Math.min(0.4 + Math.sqrt(commit['stats']['deletions'])/20, 1.0);
 	html += '<div class="commit"> \
 					<img src="'+commit['author']['avatar_url']+'"> \
 					<div class="username">'+commit['author']['login']+'</div> \
