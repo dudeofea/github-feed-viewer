@@ -24,7 +24,6 @@ $(window).load(function(){
 				}
 			});
 			cur_commits = commits;
-			update_times();
 		});
 	});
 });
@@ -39,6 +38,7 @@ function update_times(){
 		}
 	});
 }
+setInterval(update_times, 1000);
 
 function print_commit(sel, commit){
 	var html = "";
@@ -58,15 +58,15 @@ function print_commit(sel, commit){
 }
 
 function print_time(now, date){
-	var diff = parseInt((now.getTime() - date.getTime()) / 1000);
-	if(diff < 60)		//show seconds
-		return diff + "s";
-	if(diff < 10 * 60)	//show minutes for less than 10m
-		return parseInt(diff/60)+"m "+parseInt(diff%60)+"s";
-	if(diff < 60 * 60)	//show minutes
-		return parseInt(diff/60)+"m";
-	if(diff < 60 * 60 * 24) //show hours
-		return parseInt(diff/3600)+"hrs";
+	var sec = parseInt((now.getTime() - date.getTime()) / 1000);
+	if(sec < 60)		//show seconds
+		return sec + "s";
+	var min = parseInt(sec/60);
+	if(min < 60)	//show minutes
+		return parseInt(min)+"m "+parseInt(sec%60)+"s";
+	var hr = parseInt(min/60);
+	if(hr < 24) //show hours
+		return parseInt(hr)+"hrs "+parseInt(min%60)+"m";
 	//show days
-	return parseInt(diff/86400)+"d";
+	return parseInt(hr/24)+"d "+parseInt(hr%24)+"h";
 }
