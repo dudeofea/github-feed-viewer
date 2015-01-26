@@ -68,6 +68,7 @@ function update_commits(urls){
 		//update array
 		cur_commits = new_commits.concat(cur_commits);
 		cur_commits.slice(0, commit_count);
+		new_commits = [];
 		//click to select commit
 		$(".commit-wrapper").off();
 		$(".commit-wrapper").click(function(){
