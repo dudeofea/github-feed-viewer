@@ -25,13 +25,15 @@ $(window).load(function(){
 				}
 			});
 			cur_commits = commits;
-			show_diff(3);
+			commit_slideshow_i = 0;
 		});
 	});
 });
 
 //show a diff patch in the detail window
 function show_diff(i){
+	if(cur_commits.length == 0)
+		return;
 	var total_length = 0;
 	for (var j = 0; j < cur_commits[i]['files'].length; j++) {
 		if(total_length > 100){
@@ -79,6 +81,16 @@ function update_times(){
 	});
 }
 setInterval(update_times, 1000);
+
+//slideshow of commits
+var commit_slideshow;
+var commit_slideshow_i = 0;
+setInterval(function(){
+	show_diff(commit_slideshow_i++);
+	if(commit_slideshow_i >= commit_count){
+		commit_slideshow_i = 0;
+	}
+}, 5000);
 
 //create commit in commit-wrapper element
 function print_commit(sel, commit){
