@@ -148,7 +148,6 @@ setInterval(function(){
 
 //create commit in commit-wrapper element
 function print_commit(sel, commit){
-	console.log('commit: '+JSON.stringify(commit['stats']));
 	var html = "";
 	var insert_o = Math.min(0.4 + Math.sqrt(commit['stats']['additions'])/20, 1.0);
 	var delete_o = Math.min(0.4 + Math.sqrt(commit['stats']['deletions'])/20, 1.0);
