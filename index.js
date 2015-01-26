@@ -1,5 +1,6 @@
 var commit_count = 8;
 var cur_commits = [];
+var new_commits = [];
 //newest date is a week ago
 var newest_date = new Date();
 newest_date.setDate(newest_date.getDate() - 1);
@@ -29,40 +30,43 @@ function update_commits(urls){
 				if(commit_date > newest_date){
 					commits[i]['date'] = commit_date;
 					$.get(commits[i]['url'], d.addDep());
-					cur_commits.push(commits[i]);
+					new_commits.push(commits[i]);
 				}
 			};
 		});
 	};
 	d.calc(function(data){
 		//sort cur_commits by date
-		cur_commits.sort(function(a, b){
+		new_commits.sort(function(a, b){
 			if(a['date'] > b['date'])
 				return -1;
 			if(a['date'] < b['date'])
 				return 1;
 			return 0;
 		});
-		//get newest date and add elements
-		for (var i = 0; i < cur_commits.length; i++) {
-			if(cur_commits[i]['date'] > newest_date){
-				newest_date = cur_commits[i]['date'];
-			}
-			$('#commits').prepend('<div class="commit-wrapper"></div>');
-		};
-		cur_commits = cur_commits.slice(0, Math.min(commit_count, data.length / 3));
+		//slice
+		new_commits = new_commits.slice(0, Math.min(commit_count, data.length / 3));
 		//add stats & diffs
-		for (var i = 0; i < cur_commits.length; i++) {
-			cur_commits[i]['stats'] = data[i*3]['stats'];
-			cur_commits[i]['files'] = data[i*3]['files'];
+		for (var i = 0; i < new_commits.length; i++) {
+			new_commits[i]['stats'] = data[i*3]['stats'];
+			new_commits[i]['files'] = data[i*3]['files'];
 		};
-		$('#commits > div:gt(8)').remove();
-		$('#commits > div').each(function(i){
-			if(typeof cur_commits[i] != "undefined"){
-				var sel = $("#commits > div:nth-child("+(i+1)+")");
-				print_commit(sel, cur_commits[i]);
+		//get newest date and add elements
+		for (var i = new_commits.length -1; i >= 0; i--) {
+			if(new_commits[i]['date'] > newest_date){
+				newest_date = new_commits[i]['date'];
 			}
-		});
+			if(typeof new_commits[i] != "undefined"){
+				$('#commits').prepend('<div class="commit-wrapper"></div>');
+				var sel = $('#commits > div:first-child');
+				print_commit(sel, new_commits[i]);
+			}
+		};
+		//cleanup
+		$('#commits > div:gt(8)').remove();
+		//update array
+		cur_commits = new_commits.concat(cur_commits);
+		cur_commits.slice(0, commit_count);
 		commit_slideshow_i = 0;
 	});
 }
