@@ -74,6 +74,7 @@ function update_commits(urls){
 			show_diff($(this).index());
 		});
 		commit_slideshow_i = 0;
+		show_diff(0);
 	});
 }
 
