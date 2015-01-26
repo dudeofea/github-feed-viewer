@@ -6,6 +6,7 @@ var newest_date = new Date();
 newest_date.setDate(newest_date.getDate() - 1);
 
 $(window).load(function(){
+	//github links go in here
 	var urls = ["https://github.com/dudeofea/github-feed-viewer",
 				"https://github.com/raspberrypi/linux"];
 	//remove github link and just leave /:author/:repo:
