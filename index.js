@@ -32,16 +32,28 @@ $(window).load(function(){
 
 //show a diff patch in the detail window
 function show_diff(i){
-	var sel = $('#diff-view pre code');
-	var html = cur_commits[i]['files'][0]['patch'];
-	//replace < and > with &lt; and &gt;
-	html = html.replace(/</g, '&lt;');
-	html = html.replace(/>/g, '&gt;');
-	sel.html(html);
-	sel.each(function(i, block){
-		hljs.highlightBlock(block);
-		_highlight_diff(block);
-	});
+	var total_length = 0;
+	for (var j = 0; j < cur_commits[i]['files'].length; j++) {
+		if(total_length > 100){
+			break;
+		}
+		//add the patch block
+		$('#diff-view').append('<div class="diff"><p class="title"></p><pre><code></code></pre></div>');
+		//select it
+		var sel = $('#diff-view .diff:nth-child('+(j+1)+') pre code');
+		$('#diff-view .diff:nth-child('+(j+1)+') .title').html(cur_commits[i]['files'][j]['filename']);
+		var html = cur_commits[i]['files'][j]['patch'];
+		var newlines = cur_commits[i]['files'][j]['patch'].split("\n").length;
+		total_length += newlines;
+		//replace < and > with &lt; and &gt;
+		html = html.replace(/</g, '&lt;');
+		html = html.replace(/>/g, '&gt;');
+		sel.html(html);
+		sel.each(function(i, block){
+			hljs.highlightBlock(block);
+			_highlight_diff(block);
+		});
+	};
 	//add selected class
 	$("#commits > div").removeClass('selected');
 	$("#commits > div:nth-child("+(i+1)+")").addClass('selected');

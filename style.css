@@ -129,8 +129,13 @@ html, body {
 .diff-view {
   overflow: hidden; }
   .diff-view pre {
-    margin: 1em; }
+    margin: 0 1em 1em 1em; }
   .diff-view code {
     overflow: hidden; }
+  .diff-view .title {
+    font-family: 'Noto Sans', sans-serif;
+    font-weight: bold;
+    font-size: 14px;
+    margin: 0.5em 1em 0.5em 1em; }
 
 /*# sourceMappingURL=style.css.map */
