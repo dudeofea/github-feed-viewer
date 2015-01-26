@@ -37,6 +37,11 @@ function update_commits(urls){
 		});
 	};
 	d.calc(function(data){
+		//add stats & diffs
+		for (var i = 0; i < new_commits.length; i++) {
+			new_commits[i]['stats'] = data[i*3]['stats'];
+			new_commits[i]['files'] = data[i*3]['files'];
+		};
 		//sort cur_commits by date
 		new_commits.sort(function(a, b){
 			if(a['date'] > b['date'])
@@ -47,11 +52,6 @@ function update_commits(urls){
 		});
 		//slice
 		new_commits = new_commits.slice(0, Math.min(commit_count, data.length / 3));
-		//add stats & diffs
-		for (var i = 0; i < new_commits.length; i++) {
-			new_commits[i]['stats'] = data[i*3]['stats'];
-			new_commits[i]['files'] = data[i*3]['files'];
-		};
 		//get newest date and add elements
 		for (var i = new_commits.length -1; i >= 0; i--) {
 			if(new_commits[i]['date'] > newest_date){
