@@ -63,10 +63,15 @@ function update_commits(urls){
 			}
 		};
 		//cleanup
-		$('#commits > div:gt(8)').remove();
+		$('#commits > div:gt('+commit_count+')').remove();
 		//update array
 		cur_commits = new_commits.concat(cur_commits);
 		cur_commits.slice(0, commit_count);
+		//click to select commit
+		$(".commit-wrapper").off();
+		$(".commit-wrapper").click(function(){
+			show_diff($(this).index());
+		});
 		commit_slideshow_i = 0;
 	});
 }
@@ -85,12 +90,12 @@ function show_diff(i){
 		//get patch
 		var html = cur_commits[i]['files'][j]['patch'];
 		if(typeof html == "undefined"){
-			continue;
+			html = cur_commits[i]['files'][j]['status'];
 		}
 		var newlines = html.split("\n").length;
 		total_length += newlines;
 		//add the patch block
-		diffs.append('<div class="diff"><p class="title"></p><pre><code></code></pre></div>');
+		diffs.append('<div class="diff"><p class="title"></p><pre><code class="diff"></code></pre></div>');
 		//select it
 		var sel = $('#diff-view .diff:nth-child('+(j+1)+') pre code');
 		$('#diff-view .diff:nth-child('+(j+1)+') .title').html(cur_commits[i]['files'][j]['filename']);
@@ -100,7 +105,7 @@ function show_diff(i){
 		sel.html(html);
 		sel.each(function(i, block){
 			hljs.highlightBlock(block);
-			_highlight_diff(block);
+			//_highlight_diff(block);
 		});
 	};
 	//add selected class
