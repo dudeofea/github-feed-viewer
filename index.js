@@ -74,6 +74,7 @@ function update_commits(urls){
 		$(".commit-wrapper").click(function(){
 			show_diff($(this).index());
 		});
+		//show first commit in list
 		commit_slideshow_i = 0;
 		show_diff(0);
 	});
