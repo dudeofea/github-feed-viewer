@@ -72,7 +72,6 @@ html, body {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
     height: 95%; }
   .commit-list .commit > div {
     display: inline-block;
@@ -85,7 +84,8 @@ html, body {
     margin-top: -10px; }
   .commit-list .commit .username {
     margin-left: 10px;
-    margin-right: 10px; }
+    margin-right: 10px;
+    width: 12%; }
   .commit-list .commit .stats {
     width: 12%; }
   .commit-list .commit .insert-count, .commit-list .commit .delete-count {
@@ -108,7 +108,7 @@ html, body {
   .commit-list .commit .message {
     font-weight: bold;
     padding-left: 10px;
-    width: 58%;
+    width: 52%;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden; }

@@ -1,52 +1,94 @@
 var commit_count = 8;
 var cur_commits = [];
+//newest date is a week ago
+var newest_date = new Date();
+newest_date.setDate(newest_date.getDate() - 1);
 
 $(window).load(function(){
-	var urls = ["https://github.com/dudeofea/github-feed-viewer"];
+	var urls = ["https://github.com/dudeofea/github-feed-viewer",
+				"https://github.com/raspberrypi/linux"];
+	//remove github link and just leave /:author/:repo:
 	for (var i = 0; i < urls.length; i++) {
 		urls[i] = urls[i].substring(urls[i].indexOf("github.com/")+11);
 	};
-	var url = "https://api.github.com/repos/"+urls[0]+"/commits";
-	$.get(url, function(commits){
-		var d = new Dep({ bundleArgs: true });
-		for (var i = 0; i < commits.length; i++) {
-			$.get(commits[i]['url'], d.addDep());
-		};
-		d.calc(function(data){
-			//add stats & diffs
-			for (var i = 0; i < commits.length; i++) {
-				commits[i]['stats'] = data[i*3]['stats'];
-				commits[i]['files'] = data[i*3]['files'];
-			};
-			$('#commits > div').each(function(i){
-				if(typeof commits[i] != "undefined"){
-					var sel = $("#commits > div:nth-child("+(i+1)+")");
-					print_commit(sel, commits[i]);
-				}
-			});
-			cur_commits = commits;
-			commit_slideshow_i = 0;
-		});
-	});
+	update_commits(urls);
+	setInterval(function(){
+		update_commits(urls);
+	}, 30000);
 });
+
+//get newest commits
+function update_commits(urls){
+	//get commit info from repos
+	var d = new Dep({ bundleArgs: true });
+	for (var k = 0; k < urls.length; k++) {
+		var url = "https://api.github.com/repos/"+urls[k]+"/commits";
+		$.get(url, function(commits){
+			for (var i = 0; i < commits.length; i++) {
+				var commit_date = new Date(commits[i]['commit']['author']['date']);
+				if(commit_date > newest_date){
+					commits[i]['date'] = commit_date;
+					$.get(commits[i]['url'], d.addDep());
+					cur_commits.push(commits[i]);
+				}
+			};
+		});
+	};
+	d.calc(function(data){
+		//sort cur_commits by date
+		cur_commits.sort(function(a, b){
+			if(a['date'] > b['date'])
+				return -1;
+			if(a['date'] < b['date'])
+				return 1;
+			return 0;
+		});
+		//get newest date
+		for (var i = 0; i < cur_commits.length; i++) {
+			if(cur_commits[i]['date'] > newest_date){
+				newest_date = cur_commits[i]['date'];
+			}
+		};
+		cur_commits = cur_commits.slice(0, Math.min(commit_count, data.length / 3));
+		//add stats & diffs
+		for (var i = 0; i < cur_commits.length; i++) {
+			cur_commits[i]['stats'] = data[i*3]['stats'];
+			cur_commits[i]['files'] = data[i*3]['files'];
+		};
+		
+		$('#commits > div').each(function(i){
+			if(typeof cur_commits[i] != "undefined"){
+				var sel = $("#commits > div:nth-child("+(i+1)+")");
+				print_commit(sel, cur_commits[i]);
+			}
+		});
+		commit_slideshow_i = 0;
+	});
+}
 
 //show a diff patch in the detail window
 function show_diff(i){
 	if(cur_commits.length == 0)
 		return;
 	var total_length = 0;
+	var diffs = $('#diff-view');
+	diffs.html('');
 	for (var j = 0; j < cur_commits[i]['files'].length; j++) {
 		if(total_length > 100){
 			break;
 		}
+		//get patch
+		var html = cur_commits[i]['files'][j]['patch'];
+		if(typeof html == "undefined"){
+			continue;
+		}
+		var newlines = html.split("\n").length;
+		total_length += newlines;
 		//add the patch block
-		$('#diff-view').append('<div class="diff"><p class="title"></p><pre><code></code></pre></div>');
+		diffs.append('<div class="diff"><p class="title"></p><pre><code></code></pre></div>');
 		//select it
 		var sel = $('#diff-view .diff:nth-child('+(j+1)+') pre code');
 		$('#diff-view .diff:nth-child('+(j+1)+') .title').html(cur_commits[i]['files'][j]['filename']);
-		var html = cur_commits[i]['files'][j]['patch'];
-		var newlines = cur_commits[i]['files'][j]['patch'].split("\n").length;
-		total_length += newlines;
 		//replace < and > with &lt; and &gt;
 		html = html.replace(/</g, '&lt;');
 		html = html.replace(/>/g, '&gt;');
@@ -87,7 +129,7 @@ var commit_slideshow;
 var commit_slideshow_i = 0;
 setInterval(function(){
 	show_diff(commit_slideshow_i++);
-	if(commit_slideshow_i >= commit_count){
+	if(commit_slideshow_i >= commit_count || commit_slideshow_i >= cur_commits.length){
 		commit_slideshow_i = 0;
 	}
 }, 5000);
@@ -97,6 +139,15 @@ function print_commit(sel, commit){
 	var html = "";
 	var insert_o = Math.min(0.4 + Math.sqrt(commit['stats']['additions'])/20, 1.0);
 	var delete_o = Math.min(0.4 + Math.sqrt(commit['stats']['deletions'])/20, 1.0);
+	if(commit['author'] == null){
+		commit['author'] = {
+			avatar_url: 'blacktocat.png',
+			login: commit['commit']['author']['name']
+		};
+	}
+	var message = commit['commit']['message'];
+	message = message.replace(/</g, "&lt;");
+	message = message.replace(/>/g, "&gt;");
 	html += '<div class="commit"> \
 					<img src="'+commit['author']['avatar_url']+'"> \
 					<div class="username">'+commit['author']['login']+'</div> \
@@ -104,7 +155,7 @@ function print_commit(sel, commit){
 						<div class="insert-count" style="opacity:'+insert_o+'">'+commit['stats']['additions']+'+</div> \
 						<div class="delete-count" style="opacity:'+delete_o+'">'+commit['stats']['deletions']+'-</div> \
 					</div> \
-					<div class="message">'+commit['commit']['message']+'</div> \
+					<div class="message">'+message+'</div> \
 					<div class="time"></div> \
 				</div>';
 	sel.html(html);

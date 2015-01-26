@@ -77,7 +77,6 @@ html, body {
 		padding: 0.5% 1%;
 		img {
 			@include border-radius(5px);
-			border: 1px solid rgba(0, 0, 0, 0.08);
 			height: 95%;
 		}
 		& > div {
@@ -93,6 +92,7 @@ html, body {
 		.username {
 			margin-left: 10px;
 			margin-right: 10px;
+			width: 12%;
 		}
 		.stats{
 			width: 12%;
@@ -117,7 +117,7 @@ html, body {
 		.message {
 			font-weight: bold;
 			padding-left: 10px;
-			width: 58%;
+			width: 52%;
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			overflow: hidden;
