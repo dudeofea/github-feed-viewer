@@ -33,7 +33,11 @@ $(window).load(function(){
 //show a diff patch in the detail window
 function show_diff(i){
 	var sel = $('#diff-view pre code');
-	sel.html(cur_commits[i]['files'][0]['patch']);
+	var html = cur_commits[i]['files'][0]['patch'];
+	//replace < and > with &lt; and &gt;
+	html = html.replace(/</g, '&lt;');
+	html = html.replace(/>/g, '&gt;');
+	sel.html(html);
 	sel.each(function(i, block){
 		hljs.highlightBlock(block);
 		_highlight_diff(block);
@@ -45,6 +49,7 @@ function show_diff(i){
 
 function _highlight_diff(block){
 	var html = $(block).html();
+	//highlight deletions / additions
 	html = html.replace(/\n(-.*)/g, '\n<span class="hljs-deletion">$1</span>');
 	html = html.replace(/\n(\+.*)/g, '\n<span class="hljs-addition">$1</span>');
 	$(block).html(html);
