@@ -38,7 +38,7 @@ function update_commits(urls){
 	};
 	d.calc(function(data){
 		//add stats & diffs
-		for (var i = 0; i < new_commits.length; i++) {
+		for (var i = 0; i < data.length / 3; i++) {
 			new_commits[i]['stats'] = data[i*3]['stats'];
 			new_commits[i]['files'] = data[i*3]['files'];
 		};
