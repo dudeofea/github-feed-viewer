@@ -43,11 +43,12 @@ function update_commits(urls){
 				return 1;
 			return 0;
 		});
-		//get newest date
+		//get newest date and add elements
 		for (var i = 0; i < cur_commits.length; i++) {
 			if(cur_commits[i]['date'] > newest_date){
 				newest_date = cur_commits[i]['date'];
 			}
+			$('#commits').prepend('<div class="commit-wrapper"></div>');
 		};
 		cur_commits = cur_commits.slice(0, Math.min(commit_count, data.length / 3));
 		//add stats & diffs
@@ -55,7 +56,7 @@ function update_commits(urls){
 			cur_commits[i]['stats'] = data[i*3]['stats'];
 			cur_commits[i]['files'] = data[i*3]['files'];
 		};
-		
+		$('#commits > div:gt(8)').remove();
 		$('#commits > div').each(function(i){
 			if(typeof cur_commits[i] != "undefined"){
 				var sel = $("#commits > div:nth-child("+(i+1)+")");
