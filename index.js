@@ -44,7 +44,7 @@ function show_diff(i){
 }
 
 function _highlight_diff(block){
-	var html = block.innerHTML;
+	var html = $(block).html();
 	html = html.replace(/\n(-.*)/g, '\n<span class="hljs-deletion">$1</span>');
 	html = html.replace(/\n(\+.*)/g, '\n<span class="hljs-addition">$1</span>');
 	$(block).html(html);
