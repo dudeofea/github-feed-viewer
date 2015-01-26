@@ -126,9 +126,11 @@ html, body {
     line-height: auto;
     margin: 0; }
 
-.diff-view pre {
-  margin: 1em; }
-.diff-view code {
+.diff-view {
   overflow: hidden; }
+  .diff-view pre {
+    margin: 1em; }
+  .diff-view code {
+    overflow: hidden; }
 
 /*# sourceMappingURL=style.css.map */

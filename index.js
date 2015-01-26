@@ -25,7 +25,7 @@ $(window).load(function(){
 				}
 			});
 			cur_commits = commits;
-			show_diff(0);
+			show_diff(3);
 		});
 	});
 });
@@ -36,10 +36,18 @@ function show_diff(i){
 	sel.html(cur_commits[i]['files'][0]['patch']);
 	sel.each(function(i, block){
 		hljs.highlightBlock(block);
+		_highlight_diff(block);
 	});
 	//add selected class
 	$("#commits > div").removeClass('selected');
 	$("#commits > div:nth-child("+(i+1)+")").addClass('selected');
+}
+
+function _highlight_diff(block){
+	var html = block.innerHTML;
+	html = html.replace(/\n(-.*)/g, '\n<span class="hljs-deletion">$1</span>');
+	html = html.replace(/\n(\+.*)/g, '\n<span class="hljs-addition">$1</span>');
+	$(block).html(html);
 }
 
 //update commit times
