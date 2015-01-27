@@ -3,7 +3,7 @@ var cur_commits = [];
 var new_commits = [];
 //newest date is a week ago
 var newest_date = new Date();
-newest_date.setDate(newest_date.getDate() - 1);
+newest_date.setDate(newest_date.getDate() - 7);
 
 $(window).load(function(){
 	//github links go in here
