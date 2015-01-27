@@ -1,3 +1,4 @@
+var token = "";
 var commit_count = 8;
 var cur_commits = [];
 var new_commits = [];
@@ -24,13 +25,13 @@ function update_commits(urls){
 	//get commit info from repos
 	var d = new Dep({ bundleArgs: true });
 	for (var k = 0; k < urls.length; k++) {
-		var url = "https://api.github.com/repos/"+urls[k]+"/commits";
+		var url = "https://api.github.com/repos/"+urls[k]+"/commits?access_token="+token;
 		$.get(url, function(commits){
 			for (var i = 0; i < commits.length; i++) {
 				var commit_date = new Date(commits[i]['commit']['author']['date']);
 				if(commit_date > newest_date){
 					commits[i]['date'] = commit_date;
-					$.get(commits[i]['url'], d.addDep());
+					$.get(commits[i]['url']+"?access_token="+token, d.addDep());
 					new_commits.push(commits[i]);
 				}
 			};
