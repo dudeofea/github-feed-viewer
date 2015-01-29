@@ -72,7 +72,7 @@ html, body {
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     border-radius: 5px;
-    height: 95%; }
+    height: 100%; }
   .commit-list .commit > div {
     display: inline-block;
     margin: 0;
