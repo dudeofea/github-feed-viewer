@@ -1,5 +1,5 @@
 var token = "";
-var commit_count = 20;
+var commit_count = 10;
 var cur_commits = [];
 var new_commits = [];
 //newest date is a week ago
@@ -31,7 +31,7 @@ $(window).load(function(){
 	update_commits(urls);
 	setInterval(function(){
 		update_commits(urls);
-	}, 30000);
+	}, 20000);
 });
 
 //get newest commits
