@@ -8,8 +8,22 @@ newest_date.setDate(newest_date.getDate() - 7);
 
 $(window).load(function(){
 	//github links go in here
-	var urls = ["https://github.com/dudeofea/github-feed-viewer",
-				"https://github.com/raspberrypi/linux"];
+	var urls = ["https://github.com/TianZhiWang/BearTraps",
+"https://github.com/jesseDtucker/ChemistsFun",
+"https://github.com/rijeshaugustine/Pavo",
+"https://github.com/rosshamish/run-on-journaling",
+"https://github.com/HackatonMisc/ConnectingU",
+"https://github.com/j-rewerts/SmartBroom",
+"https://github.com/earthiverse/dancedancerepo",
+"https://github.com/dudeofea/pi-jam",
+"https://github.com/dudeofea/pi-jam-app",
+"https://github.com/IrisAmp/hacked15-flow",
+"https://github.com/nettapper/HackED-2015-Hackathon",
+"https://github.com/Loonman/blow-ya-up-like-flame-leviathan",
+"https://github.com/hughboi/hackathon-rpg",
+"https://github.com/askalburgi/ShoutBox",
+"https://github.com/nwestbury/VaporChat",
+"https://github.com/sgil88/CampusCatcher_hacked2015"];
 	//remove github link and just leave /:author/:repo:
 	for (var i = 0; i < urls.length; i++) {
 		urls[i] = urls[i].substring(urls[i].indexOf("github.com/")+11);
