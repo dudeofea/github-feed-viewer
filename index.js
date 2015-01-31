@@ -1,5 +1,5 @@
 var token = "";
-var commit_count = 8;
+var commit_count = 20;
 var cur_commits = [];
 var new_commits = [];
 //newest date is a week ago

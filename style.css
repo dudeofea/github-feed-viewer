@@ -9,26 +9,50 @@ html, body {
   float: left; }
 
 .commit-list .commit-wrapper {
-  height: 12.5%;
+  height: 5%;
   width: 100%;
   padding: 0;
   position: relative;
   box-shadow: inset 0px 1px rgba(0, 0, 0, 0.1); }
 .commit-list .commit-wrapper:nth-child(1) {
-  background-color: #fe5e4a; }
+  background-color: #fe544d; }
 .commit-list .commit-wrapper:nth-child(2) {
-  background-color: #fd6f44; }
+  background-color: #fe5b4b; }
 .commit-list .commit-wrapper:nth-child(3) {
-  background-color: #fc803f; }
+  background-color: #fe6249; }
 .commit-list .commit-wrapper:nth-child(4) {
-  background-color: #fc9139; }
+  background-color: #fd6847; }
 .commit-list .commit-wrapper:nth-child(5) {
-  background-color: #fba133; }
+  background-color: #fd6f44; }
 .commit-list .commit-wrapper:nth-child(6) {
-  background-color: #fab22e; }
+  background-color: #fd7642; }
 .commit-list .commit-wrapper:nth-child(7) {
-  background-color: #f9c328; }
+  background-color: #fc7c40; }
 .commit-list .commit-wrapper:nth-child(8) {
+  background-color: #fc833e; }
+.commit-list .commit-wrapper:nth-child(9) {
+  background-color: #fc8a3b; }
+.commit-list .commit-wrapper:nth-child(10) {
+  background-color: #fc9139; }
+.commit-list .commit-wrapper:nth-child(11) {
+  background-color: #fb9737; }
+.commit-list .commit-wrapper:nth-child(12) {
+  background-color: #fb9e35; }
+.commit-list .commit-wrapper:nth-child(13) {
+  background-color: #fba532; }
+.commit-list .commit-wrapper:nth-child(14) {
+  background-color: #faab30; }
+.commit-list .commit-wrapper:nth-child(15) {
+  background-color: #fab22e; }
+.commit-list .commit-wrapper:nth-child(16) {
+  background-color: #fab92c; }
+.commit-list .commit-wrapper:nth-child(17) {
+  background-color: #f9bf29; }
+.commit-list .commit-wrapper:nth-child(18) {
+  background-color: #f9c627; }
+.commit-list .commit-wrapper:nth-child(19) {
+  background-color: #f9cd25; }
+.commit-list .commit-wrapper:nth-child(20) {
   background-color: #f9d423; }
 .commit-list .commit-wrapper.selected .commit {
   background-color: rgba(255, 255, 255, 0.95); }
