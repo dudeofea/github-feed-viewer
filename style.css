@@ -15,25 +15,25 @@ html, body {
   position: relative;
   box-shadow: inset 0px 1px rgba(0, 0, 0, 0.1); }
 .commit-list .commit-wrapper:nth-child(1) {
-  background-color: #fe5b4b; }
+  background-color: #28b9d5; }
 .commit-list .commit-wrapper:nth-child(2) {
-  background-color: #fd6847; }
+  background-color: #2dadcf; }
 .commit-list .commit-wrapper:nth-child(3) {
-  background-color: #fd7642; }
+  background-color: #31a0c9; }
 .commit-list .commit-wrapper:nth-child(4) {
-  background-color: #fc833e; }
+  background-color: #3694c2; }
 .commit-list .commit-wrapper:nth-child(5) {
-  background-color: #fc9139; }
+  background-color: #3a88bc; }
 .commit-list .commit-wrapper:nth-child(6) {
-  background-color: #fb9e35; }
+  background-color: #3f7bb6; }
 .commit-list .commit-wrapper:nth-child(7) {
-  background-color: #faab30; }
+  background-color: #436faf; }
 .commit-list .commit-wrapper:nth-child(8) {
-  background-color: #fab92c; }
+  background-color: #4862a9; }
 .commit-list .commit-wrapper:nth-child(9) {
-  background-color: #f9c627; }
+  background-color: #4c56a3; }
 .commit-list .commit-wrapper:nth-child(10) {
-  background-color: #f9d423; }
+  background-color: #514a9d; }
 .commit-list .commit-wrapper.selected .commit {
   background-color: rgba(255, 255, 255, 0.95); }
 .commit-list .commit-wrapper.selected:after {
