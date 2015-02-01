@@ -68,8 +68,10 @@ function update_commits(urls){
 		//slice
 		new_commits = new_commits.slice(0, Math.min(commit_count, data.length / 3));
 		//get newest date and add elements
+		var now = new Date();
 		for (var i = new_commits.length -1; i >= 0; i--) {
-			if(new_commits[i]['date'] > newest_date){
+			//fuck off negative commits
+			if(new_commits[i]['date'] < now && new_commits[i]['date'] > newest_date){
 				newest_date = new_commits[i]['date'];
 			}
 			if(typeof new_commits[i] != "undefined"){
@@ -193,6 +195,8 @@ function print_commit(sel, commit){
 //format a time difference
 function print_time(now, date){
 	var sec = parseInt((now.getTime() - date.getTime()) / 1000);
+	if(sec < 0)
+		return 'The Future';
 	if(sec < 60)		//show seconds
 		return sec + "s";
 	var min = parseInt(sec/60);
