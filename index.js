@@ -1,4 +1,4 @@
-var token = "752a84941057d9ea41a78181d5fa93ad66c4e402";
+var token = "c0a29d1039808ba12ba6600e355267c73449beb9";
 var commit_count = 10;
 var cur_commits = [];
 var new_commits = [];
@@ -8,20 +8,9 @@ newest_date.setDate(newest_date.getDate() - 7);
 
 $(window).load(function(){
 	//github links go in here
-	var urls = ["https://github.com/TianZhiWang/BearTraps",
-"https://github.com/jesseDtucker/ChemistsFun",
-"https://github.com/rijeshaugustine/Pavo",
-"https://github.com/rosshamish/run-on-journaling",
-"https://github.com/HackatonMisc/ConnectingU",
-"https://github.com/j-rewerts/SmartBroom",
-"https://github.com/earthiverse/dancedancerepo",
-"https://github.com/dudeofea/pi-jam",
-"https://github.com/dudeofea/pi-jam-app",
-"https://github.com/Loonman/blow-ya-up-like-flame-leviathan",
-"https://github.com/hughboi/hackathon-rpg",
-"https://github.com/askalburgi/ShoutBox",
-"https://github.com/nwestbury/VaporChat",
-"https://github.com/sgil88/CampusCatcher_hacked2015"];
+	var urls = [
+		"https://github.com/dudeofea/github-feed-viewer"
+	];
 	//remove github link and just leave /:author/:repo:
 	for (var i = 0; i < urls.length; i++) {
 		urls[i] = urls[i].substring(urls[i].indexOf("github.com/")+11);
@@ -101,8 +90,12 @@ function show_diff(i){
 		return;
 	var total_length = 0;
 	var diffs = $('#diff-view');
+	var diff_i = 0;
 	diffs.html('');
 	for (var j = 0; j < cur_commits[i]['files'].length; j++) {
+		if(cur_commits[i]['files'][j]['additions'] == 0 && cur_commits[i]['files'][j]['deletions'] == 0){
+			continue;
+		}
 		if(total_length > 100){
 			break;
 		}
@@ -116,8 +109,8 @@ function show_diff(i){
 		//add the patch block
 		diffs.append('<div class="diff"><p class="title"></p><pre><code class="diff"></code></pre></div>');
 		//select it
-		var sel = $('#diff-view .diff:nth-child('+(j+1)+') pre code');
-		$('#diff-view .diff:nth-child('+(j+1)+') .title').html(cur_commits[i]['files'][j]['filename']);
+		var sel = $('#diff-view .diff:nth-child('+(diff_i+1)+') pre code');
+		$('#diff-view .diff:nth-child('+(diff_i+1)+') .title').html(cur_commits[i]['files'][j]['filename']);
 		//replace < and > with &lt; and &gt;
 		html = html.replace(/</g, '&lt;');
 		html = html.replace(/>/g, '&gt;');
@@ -126,6 +119,7 @@ function show_diff(i){
 			hljs.highlightBlock(block);
 			//_highlight_diff(block);
 		});
+		diff_i++;
 	};
 	//add selected class
 	$("#commits > div").removeClass('selected');
