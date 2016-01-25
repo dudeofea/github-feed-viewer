@@ -1,4 +1,4 @@
-var token = "";
+var token = "752a84941057d9ea41a78181d5fa93ad66c4e402";
 var commit_count = 10;
 var cur_commits = [];
 var new_commits = [];
@@ -17,8 +17,6 @@ $(window).load(function(){
 "https://github.com/earthiverse/dancedancerepo",
 "https://github.com/dudeofea/pi-jam",
 "https://github.com/dudeofea/pi-jam-app",
-"https://github.com/IrisAmp/hacked15-flow",
-"https://github.com/nettapper/HackED-2015-Hackathon",
 "https://github.com/Loonman/blow-ya-up-like-flame-leviathan",
 "https://github.com/hughboi/hackathon-rpg",
 "https://github.com/askalburgi/ShoutBox",
